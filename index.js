@@ -1,5 +1,6 @@
 // Dependencies
 const electron = require('electron');
+const os = require('os');
 
 // imports
 const { browserWindows } = require('./config.js');
@@ -15,7 +16,7 @@ app.on('ready', () => {
     // created new windows
     let window = new BrowserWindow(browserWindows);
     // charge windows file html
-    window.loadFile('./public/index.html');
+    window.loadURL(`file://${__dirname}/public/index.html?home=${os.homedir()}`);
     // Emitido cuando la ventana es cerrada.
     window.on('closed', () => {
         // Elimina la referencia al objeto window, normalmente  guardarías las ventanas
